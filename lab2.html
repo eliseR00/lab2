@@ -50,7 +50,7 @@
     function updateTitle() {
       // TODO: set the title text to show the count, e.g., "My Items (N)"
       // Use items.length for N
-      titleEl.textContent = `My items ${items.length}`;
+      titleEl.textContent = `My items (${items.length})`;
     }
 
     function render() {
@@ -64,14 +64,21 @@
       // TODO: call updateTitle() at the end
       listEl.innerHTML = "";
 
-      for (const item of items) {
+      items.forEach(item => {
         const li = document.createElement("li");
         li.textContent = item.name;
-        if (item.done == true){
-            li.classList.add("done");
-            li.dataset.id = item.id;
-            li.style.background = item.color;}
+
+        if (item.done) {
+          li.classList.add("done");
         }
+
+        li.dataset.id = item.id;
+
+        li.style.background = item.color;
+
+        listEl.appendChild(li);
+
+      });
         listEl.appendChild(li);
         updateTitle();
     }
